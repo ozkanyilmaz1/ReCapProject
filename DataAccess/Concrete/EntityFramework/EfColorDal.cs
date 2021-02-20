@@ -9,59 +9,49 @@ using System.Text;
 
 namespace DataAccess.Concrete.EntityFramework
 {
-    public class EfCarDal : ICarDal
+    public class EfColorDal : IColorDal
     {
-        public void Add(Car car)
+        public void Add(Color entity)
         {
             using (RentCarContext context = new RentCarContext())
             {
-                var addedEntity = context.Entry(car);
+                var addedEntity = context.Entry(entity);
                 addedEntity.State = EntityState.Added;
                 context.SaveChanges();
             }
         }
 
-        public void Delete(Car car)
+        public void Delete(Color entity)
         {
             using (RentCarContext context = new RentCarContext())
             {
-                var deletedEntry = context.Entry(car);
+                var deletedEntry = context.Entry(entity);
                 deletedEntry.State = EntityState.Deleted;
                 context.SaveChanges();
             }
         }
 
-        public Car Get(Expression<Func<Car, bool>> filter)
+        public Color Get(Expression<Func<Color, bool>> filter)
         {
             using (RentCarContext context = new RentCarContext())
             {
-                return context.Set<Car>().SingleOrDefault(filter);
+                return context.Set<Color>().SingleOrDefault(filter);
             }
         }
 
-        public List<Car> GetAll()
-        {
-            throw new NotImplementedException();
-        }
-
-        public List<Car> GetAll(Expression<Func<Car, bool>> filter = null)
+        public List<Color> GetAll(Expression<Func<Color, bool>> filter = null)
         {
             using (RentCarContext context = new RentCarContext())
             {
-                return filter == null ? context.Set<Car>().ToList() : context.Set<Car>().Where(filter).ToList();
+                return filter == null ? context.Set<Color>().ToList() : context.Set<Color>().Where(filter).ToList();
             }
         }
 
-        public List<Car> GetById(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Uptade(Car car)
+        public void Uptade(Color entity)
         {
             using (RentCarContext context = new RentCarContext())
             {
-                var uptadedEntry = context.Entry(car);
+                var uptadedEntry = context.Entry(entity);
                 uptadedEntry.State = EntityState.Modified;
                 context.SaveChanges();
             }

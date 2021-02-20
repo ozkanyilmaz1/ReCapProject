@@ -9,60 +9,50 @@ using System.Text;
 
 namespace DataAccess.Concrete.EntityFramework
 {
-    public class EfCarDal : ICarDal
+    public class EfBrandDal : IBrandDal
     {
-        public void Add(Car car)
+        public void Add(Brand entity)
         {
             using (RentCarContext context = new RentCarContext())
             {
-                var addedEntity = context.Entry(car);
+                var addedEntity = context.Entry(entity);
                 addedEntity.State = EntityState.Added;
                 context.SaveChanges();
             }
         }
 
-        public void Delete(Car car)
+        public void Delete(Brand entity)
         {
             using (RentCarContext context = new RentCarContext())
             {
-                var deletedEntry = context.Entry(car);
-                deletedEntry.State = EntityState.Deleted;
+                var deletedEntity = context.Entry(entity);
+                deletedEntity.State = EntityState.Deleted;
                 context.SaveChanges();
             }
         }
 
-        public Car Get(Expression<Func<Car, bool>> filter)
+        public Brand Get(Expression<Func<Brand, bool>> filter)
         {
             using (RentCarContext context = new RentCarContext())
             {
-                return context.Set<Car>().SingleOrDefault(filter);
+                return context.Set<Brand>().SingleOrDefault(filter);
             }
         }
 
-        public List<Car> GetAll()
-        {
-            throw new NotImplementedException();
-        }
-
-        public List<Car> GetAll(Expression<Func<Car, bool>> filter = null)
+        public List<Brand> GetAll(Expression<Func<Brand, bool>> filter = null)
         {
             using (RentCarContext context = new RentCarContext())
             {
-                return filter == null ? context.Set<Car>().ToList() : context.Set<Car>().Where(filter).ToList();
+                return filter == null ? context.Set<Brand>().ToList() : context.Set<Brand>().Where(filter).ToList();
             }
         }
 
-        public List<Car> GetById(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Uptade(Car car)
+        public void Uptade(Brand entity)
         {
             using (RentCarContext context = new RentCarContext())
             {
-                var uptadedEntry = context.Entry(car);
-                uptadedEntry.State = EntityState.Modified;
+                var uptadedEntity = context.Entry(entity);
+                uptadedEntity.State = EntityState.Modified;
                 context.SaveChanges();
             }
         }
