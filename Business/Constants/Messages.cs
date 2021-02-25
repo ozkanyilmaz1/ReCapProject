@@ -14,5 +14,6 @@ namespace Business.Constants
         public static string BrandListed = "Markalar listelendi.";
         public static string ColorIdListed = "Renk koduna göre listelendi.";
         public static string DeletedCar = "Araba sistemden silindi.";
+        public static string CustomerFuncs = "Müşteri işlemleri gerçekleştirildi.";
     }
 }
